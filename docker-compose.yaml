@@ -1,0 +1,46 @@
+version: "3"
+services:
+  mq:
+     build: ./
+     container_name: rabbitmq
+     environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      - RABBITMQ_NODENAME=rabbitmq
+     hostname: rabbitmq
+     ports:
+       - "5672:5672"
+       - "15672:15672"
+       - "25672:25672"
+       - "14369:4369"
+       - "5671:5671"
+     depends_on:
+        - mqv2
+  mqv2:
+     build: ./
+     container_name: rabbitmqv2
+     hostname: rabbitmqv2
+     environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      - RABBITMQ_NODENAME=rabbitmqv2
+     ports:
+       - "5673:5672"
+       - "15673:15672"
+       - "25673:25672"
+       - "14370:4369"
+       - "5674:5671"
+  mqv3:
+     build: ./
+     container_name: rabbitmqv3
+     hostname: rabbitmqv3
+     environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      - RABBITMQ_NODENAME=rabbitmqv3
+     ports:
+       - "5675:5672"
+       - "15674:15672"
+       - "25674:25672"
+       - "14371:4369"
+       - "5676:5671"
